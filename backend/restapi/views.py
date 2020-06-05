@@ -12,7 +12,6 @@ import datetime
 class StoreViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.order_by('name')
     serializer_class = ProductSerializer
-    
 
     @action(detail=False)
     def get_cartItems(self, request, pk=None):
@@ -20,13 +19,12 @@ class StoreViewSet(viewsets.ModelViewSet):
         cartItems = data['cartItems']
         return Response({'cartItem': cartItems})
 
+
 class CartViewSet(viewsets.ViewSet):
 
     def list(self, request, pk=None):
-        data = cartData(request)    
+        data = cartData(request)
         items = data['items']
         serializer = OrderItemSerializer(items, many=True)
-        
 
         return Response(serializer.data)
-    

@@ -21,10 +21,12 @@ class OrderSerializer(serializers.ModelSerializer):
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
+    get_total = serializers.ReadOnlyField()
+
     class Meta:
         depth = 1
         model = OrderItem
-        fields = ('product', 'order', 'quantity')
+        fields = '__all__'
 
 
 class ShippingAddressSerializer(serializers.ModelSerializer):
